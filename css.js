@@ -158,10 +158,12 @@ define(function() {
 
 //>>excludeStart('excludeRequireCss', pragmas.excludeRequireCss)
   cssAPI.load = function(cssId, req, load, config) {
-    config = config || {};
-    var extension = config.fileExtension || '.css';
-    (useImportLoad ? importLoad : linkLoad)(req.toUrl(cssId + extension), load);
+    config = config.css || {};
 
+    var extension = config.fileExtension || '.css';
+    var fileName = cssId.replace(new RegExp(extension.replace('.', '\\.') + '$'), extension);
+
+    (useImportLoad ? importLoad : linkLoad)(req.toUrl(fileName), load);
   }
 
 //>>excludeEnd('excludeRequireCss')
