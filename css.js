@@ -158,8 +158,9 @@ define(function() {
 
 //>>excludeStart('excludeRequireCss', pragmas.excludeRequireCss)
   cssAPI.load = function(cssId, req, load, config) {
-
-    (useImportLoad ? importLoad : linkLoad)(req.toUrl(cssId + '.css'), load);
+    config = config || {};
+    var extension = config.fileExtension || '.css';
+    (useImportLoad ? importLoad : linkLoad)(req.toUrl(cssId + extension), load);
 
   }
 
